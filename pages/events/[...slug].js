@@ -4,14 +4,9 @@ import ResultsTitle from "../../components/events/results-title";
 import { Fragment } from "react";
 import Button from "../../components/ui/button";
 import ErrorAlert from "../../components/error-alert/error-alert";
-import { getFilteredEvents } from "../../dummy-data";
+import { getFilteredEvents } from "../../helpers/api-utils";
 
 const FilteredEventsPage = (props) => {
-  const router = useRouter();
-  const filterData = router.query.slug;
-
-  console.log(props.parameter);
-
   // if (!filterData) {
   //   return <p className="center">Loading...</p>;
   // }
@@ -85,7 +80,7 @@ export const getServerSideProps = async (context) => {
     };
   }
 
-  const filteredEvents = getFilteredEvents({
+  const filteredEvents = await getFilteredEvents({
     year: numYear,
     month: numMonth,
   });

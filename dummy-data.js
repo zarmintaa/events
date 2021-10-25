@@ -39,7 +39,7 @@ export function getAllEvents() {
   return DUMMY_EVENTS;
 }
 
-export function getFilteredEvents(dateFilter) {
+/*export function getFilteredEvents(dateFilter) {
   const { year, month } = dateFilter;
 
   return DUMMY_EVENTS.filter((event) => {
@@ -48,7 +48,7 @@ export function getFilteredEvents(dateFilter) {
       eventDate.getFullYear() === year && eventDate.getMonth() === month - 1
     );
   });
-}
+}*/
 
 // export function getEventById(id) {
 //   return DUMMY_EVENTS.find((event) => event.id === id);
