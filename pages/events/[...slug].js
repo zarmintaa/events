@@ -6,13 +6,12 @@ import Button from "../../components/ui/button";
 import ErrorAlert from "../../components/error-alert/error-alert";
 import { FIREBASE_URL } from "../../helpers/api-utils";
 import useSWR from "swr";
+import Head from "next/head";
 
 const FilteredEventsPage = () => {
   const [loadedEvents, setLoadedEvents] = useState();
   const router = useRouter();
-
   const filterData = router.query.slug;
-
   const { data, error } = useSWR(FIREBASE_URL);
 
   useEffect(() => {
@@ -30,15 +29,36 @@ const FilteredEventsPage = () => {
     }
   }, [data]);
 
+  let pageHeadData = (
+    <Head>
+      <title>Filtered Events</title>
+      <meta name="description" content={`All events`} />
+    </Head>
+  );
+
   if (!loadedEvents) {
-    return <p className="center">Loading...</p>;
+    return (
+      <Fragment>
+        {pageHeadData}
+        <p className="center">Loading...</p>
+      </Fragment>
+    );
   }
 
   const filteredYear = filterData[0];
   const filteredMonth = filterData[1];
-
   const numYear = +filteredYear;
   const numMonth = +filteredMonth;
+
+  pageHeadData = (
+    <Head>
+      <title>Filtered Events</title>
+      <meta
+        name="description"
+        content={`All events for ${numMonth}/${numYear}`}
+      />
+    </Head>
+  );
 
   if (
     isNaN(numYear) ||
@@ -86,6 +106,7 @@ const FilteredEventsPage = () => {
 
   return (
     <Fragment>
+      {pageHeadData}
       <ResultsTitle date={date} />
       <EventList items={filteredEvents} />
     </Fragment>
