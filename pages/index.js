@@ -1,6 +1,5 @@
 import { getFeaturedEvents } from "../helpers/api-utils";
 import EventList from "./../components/events/event-list";
-import { FIREBASE_URL } from "../helpers/api-utils";
 
 const HomePage = (props) => {
   return (
@@ -16,6 +15,7 @@ export const getStaticProps = async () => {
     props: {
       events: featuredEvents,
     },
+    revalidate: 1800,
   };
 };
 
