@@ -18,7 +18,6 @@ const EventDetailPage = () => {
         <ErrorAlert>
           <p>No Event Found</p>
         </ErrorAlert>
-
         <div className="center">
           <Button link="/events">Browse All Events</Button>
         </div>
