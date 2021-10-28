@@ -12,9 +12,7 @@ import ErrorAlert from "../../components/ui/error-alert";
 function FilteredEventsPage(props) {
   const [loadedEvents, setLoadedEvents] = useState();
   const router = useRouter();
-
   const filterData = router.query.slug;
-
   const { data, error } = useSWR(FIREBASE_URL);
 
   useEffect(() => {

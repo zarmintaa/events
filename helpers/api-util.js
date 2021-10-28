@@ -1,6 +1,5 @@
-export const FIREBASE_URL =
-    "https://next-events-4895b-default-rtdb.firebaseio.com/events.json";
-
+const FIREBASE_URL =
+  "https://next-events-4895b-default-rtdb.firebaseio.com/events.json";
 
 export async function getAllEvents() {
   const response = await fetch(FIREBASE_URL);
@@ -11,7 +10,7 @@ export async function getAllEvents() {
   for (const key in data) {
     events.push({
       id: key,
-      ...data[key]
+      ...data[key],
     });
   }
 
@@ -35,7 +34,9 @@ export async function getFilteredEvents(dateFilter) {
 
   let filteredEvents = allEvents.filter((event) => {
     const eventDate = new Date(event.date);
-    return eventDate.getFullYear() === year && eventDate.getMonth() === month - 1;
+    return (
+      eventDate.getFullYear() === year && eventDate.getMonth() === month - 1
+    );
   });
 
   return filteredEvents;
