@@ -45,10 +45,6 @@ const handler = async (req, res) => {
     } catch (error) {
       res.status(500).json({ message: "Inserting comment failed!" });
     }
-    /* const db = client.db();
-    const result = await db.collection("comments").insertOne(newComment);
-    console.log(result);
-    res.status(201).json({ message: "Added Comment", comment: newComment });*/
   }
 
   if (req.method === "GET") {
@@ -58,13 +54,6 @@ const handler = async (req, res) => {
     } catch (error) {
       res.status(500).json({ message: "Getting comments failed." });
     }
-    /*const db = client.db();
-    const documents = await db
-      .collection("comments")
-      .find()
-      .sort({ _id: -1 })
-      .toArray();
-    res.status(201).json({ message: "success", comments: documents });*/
   }
 
   await client.close();
